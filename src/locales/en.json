@@ -1,0 +1,21 @@
+{
+  "home": "Home",
+  "about": "About",
+  "team": "Team",
+  "donors": "Donors",
+  "become_donor": "Become Donor",
+  "request_blood": "Request Blood",
+  "contact": "Contact",
+  "login": "Login",
+  "signup": "Signup",
+
+  "full_name": "Full Name",
+  "father_name": "Father Name",
+  "city": "City",
+  "address": "Address",
+  "blood_group": "Blood Group",
+  "submit": "Submit",
+
+  "search": "Search",
+  "clear": "Clear"
+}

@@ -1,0 +1,21 @@
+{
+  "home": "ہوم",
+  "about": "ہمارے بارے میں",
+  "team": "ٹیم",
+  "donors": "ڈونرز",
+  "become_donor": "ڈونر بنیں",
+  "request_blood": "خون کی درخواست",
+  "contact": "رابطہ",
+  "login": "لاگ ان",
+  "signup": "رجسٹر",
+
+  "full_name": "پورا نام",
+  "father_name": "والد کا نام",
+  "city": "شہر",
+  "address": "پتہ",
+  "blood_group": "بلڈ گروپ",
+  "submit": "جمع کریں",
+
+  "search": "تلاش کریں",
+  "clear": "صاف کریں"
+}
