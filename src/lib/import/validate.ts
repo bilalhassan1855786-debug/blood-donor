@@ -1,6 +1,39 @@
 import { ParsedDonorRow } from "./types";
 import { BLOOD_GROUPS } from "./constants";
 
+// Fields we consider necessary for a donor profile to be usable —
+// missing any of these flags the imported record as "incomplete" so
+// admins can follow up, without blocking the import itself.
+const REQUIRED_PROFILE_FIELDS: {
+  key: keyof ParsedDonorRow;
+  label: string;
+}[] = [
+  { key: "fullName", label: "Full Name" },
+  { key: "whatsappNumber", label: "WhatsApp Number" },
+  { key: "bloodGroup", label: "Blood Group" },
+  { key: "city", label: "City" },
+  { key: "cnic", label: "CNIC" },
+  { key: "age", label: "Age" },
+  { key: "weight", label: "Weight" },
+];
+
+export function computeProfileStatus(
+  row: Record<string, any>
+): {
+  profileStatus: "complete" | "incomplete";
+  missingFields: string[];
+} {
+  const missingFields = REQUIRED_PROFILE_FIELDS.filter(({ key }) => {
+    const value = row[key];
+    return value === undefined || value === null || value === "";
+  }).map(({ label }) => label);
+
+  return {
+    profileStatus: missingFields.length === 0 ? "complete" : "incomplete",
+    missingFields,
+  };
+}
+
 export function normalizeRow(
   row: ParsedDonorRow
 ): ParsedDonorRow {

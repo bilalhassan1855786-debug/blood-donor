@@ -118,6 +118,7 @@ if (samePassword) {
   await bcrypt.hash(newPassword, 10);
 
 user.password = hashedPassword;
+user.mustChangePassword = false;
 
 await user.save();
 
@@ -126,10 +127,6 @@ await user.save();
       message:
         "Password updated successfully.",
     });
-    await User.findByIdAndUpdate(userId, {
-    password: hashedPassword,
-    mustChangePassword: false,
-});
   } catch (error) {
     console.error(error);
 

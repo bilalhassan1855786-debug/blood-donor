@@ -63,7 +63,7 @@ export default function HealthTipsPage() {
             />
           </div>
           <span className={`${mono.className} text-xs md:text-sm tracking-wider uppercase text-[#5B5964]`}>
-            {c.brand_name ?? "Blood Donation Guide"}
+            {"Blood Donation Guide"}
           </span>
         </div>
 
