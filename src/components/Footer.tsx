@@ -35,7 +35,7 @@ const CONTACTS: Contact[] = [
     roleKey: "admin",
     phone: "+923218615531", // TODO: real number
     whatsapp: "923218615531", // TODO: real number
-    email: "ianamjad.me@gmail.com", // TODO: real email
+    email: "mianamjad.me@gmail.com", // TODO: real email
   },
   {
     name: "Ghulam Shabir",
