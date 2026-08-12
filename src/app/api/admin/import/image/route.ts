@@ -44,7 +44,7 @@ validateImage(file);
       );
     }
 
-    const { results, counts } = await buildImportPreview(rows, { alreadyMapped: true });
+    const { results, counts } = await buildImportPreview(rows);
 
     return NextResponse.json({
       success: true,
