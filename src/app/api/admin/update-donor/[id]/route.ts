@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
@@ -41,9 +41,9 @@ export async function PUT(
     }
 
     const body = await req.json();
-
+const { id } = await params;
     const donor = await Donor.findByIdAndUpdate(
-      params.id,
+      id,
       {
         fullName: body.fullName,
         fatherName: body.fatherName,

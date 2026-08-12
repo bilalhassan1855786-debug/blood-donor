@@ -7,8 +7,9 @@ import { redirect } from "next/navigation";
 export default async function UsersPage({
   searchParams,
 }: {
-  searchParams: { search?: string };
+  searchParams: Promise<{ search?: string }>;
 }) {
+  const { search } = await searchParams;
   await connectDB();
 
   const token = (await cookies()).get("token")?.value;
@@ -26,7 +27,7 @@ export default async function UsersPage({
     redirect("/admin");
   }
 
-  const search = searchParams?.search || "";
+  
 
   const users = await User.find(
     search

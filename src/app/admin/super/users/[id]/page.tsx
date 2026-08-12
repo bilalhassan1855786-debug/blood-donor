@@ -4,11 +4,12 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 
-export default async function UserProfilePage({
+export default async function Something({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   await connectDB();
 
   const token = (await cookies()).get("token")?.value;
@@ -34,7 +35,7 @@ export default async function UserProfilePage({
   }
 
   const user = await User.findById(
-    params.id
+    id
   ).select("-password");
 
   if (!user) {

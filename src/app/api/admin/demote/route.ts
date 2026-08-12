@@ -7,8 +7,7 @@ export async function POST(req: Request) {
   try {
     await connectDB();
 
-    const token = cookies().get("token")?.value;
-
+    const token = (await cookies()).get("token")?.value;
     if (!token) {
       return Response.json({ message: "Unauthorized" }, { status: 401 });
     }
