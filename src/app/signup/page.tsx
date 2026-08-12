@@ -71,76 +71,69 @@ export default function SignupPage() {
   });
 };
 
-  const handleImageUpload =
-    async (
-      e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-      const file =
-        e.target.files?.[0];
+ const handleImageUpload = async (
+  e: React.ChangeEvent<HTMLInputElement>
+) => {
+  const file = e.target.files?.[0];
 
-      if (!file) return;
+  if (!file) return;
 
-      setUploading(true);
+  // Maximum 5 MB
+  if (file.size > 5 * 1024 * 1024) {
+    alert("Image must be smaller than 5 MB.");
+    e.target.value = "";
+    return;
+  }
 
-      const reader =
-        new FileReader();
+  // Only images
+  if (!file.type.startsWith("image/")) {
+    alert("Please select a valid image.");
+    e.target.value = "";
+    return;
+  }
 
-      reader.onloadend =
-        async () => {
-          try {
-            const res =
-              await safeFetch(
-                "/api/upload",
-                {
-                  method:
-                    "POST",
-                  headers:
-                    {
-                      "Content-Type":
-                        "application/json",
-                    },
-                  body:
-                    JSON.stringify(
-                      {
-                        image:
-                          reader.result,
-                      }
-                    ),
-                }
-              );
+  setUploading(true);
 
-            const data =
-              await res.json();
+  const reader = new FileReader();
 
-            if (
-              data.success
-            ) {
-              setForm(
-                (
-                  prev
-                ) => ({
-                  ...prev,
-                  photo:
-                    data.url,
-                })
-              );
-            }
-          } catch (err) {
-            if (isOfflineError(err)) {
-              alert("You're offline. Please check your connection and try again.");
-            }
-          } finally {
-            setUploading(
-              false
-            );
-          }
-        };
+  reader.onloadend = async () => {
+    try {
+      const res = await safeFetch("/api/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: reader.result,
+        }),
+      });
 
-      reader.readAsDataURL(
-        file
-      );
-    };
+      const data = await res.json();
 
+      if (!res.ok || !data.success) {
+        alert(data.message || "Image upload failed.");
+        return;
+      }
+
+      setForm((prev) => ({
+        ...prev,
+        photo: data.url,
+      }));
+    } catch (err) {
+      if (isOfflineError(err)) {
+        alert(
+          "You're offline. Please check your connection and try again."
+        );
+      } else {
+        alert("Image upload failed. Please try again.");
+      }
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  reader.readAsDataURL(file);
+};
   const handleSubmit =
  
     async (
@@ -237,12 +230,13 @@ export default function SignupPage() {
   </label>
 
   <input
-    id="profilePhoto"
-    type="file"
-    accept="image/*"
-    onChange={handleImageUpload}
-    className="w-full border rounded-xl p-2"
-  />
+  id="profilePhoto"
+  type="file"
+  accept="image/jpeg,image/png,image/webp"
+  onChange={handleImageUpload}
+  disabled={uploading}
+  className="w-full border rounded-xl p-2"
+/>
 
   {uploading && (
     <p className="text-sm text-red-500 mt-2">

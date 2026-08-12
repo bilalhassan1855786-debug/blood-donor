@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SuperAdminSidebar from "@/components/admin/SuperAdminSidebar";
 
 export default function SuperAdminLayout({
   children,
@@ -6,37 +6,11 @@ export default function SuperAdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen bg-gray-100 lg:flex">
 
-      <aside className="w-72 bg-black text-white p-5">
+      <SuperAdminSidebar />
 
-        <h1 className="text-2xl font-bold mb-8">
-          Super Admin
-        </h1>
-
-        <div className="flex flex-col gap-3">
-
-          <Link href="/admin/super">
-            Dashboard
-          </Link>
-
-          <Link href="/admin/super/users">
-            Manage Users
-          </Link>
-
-          <Link href="/admin/donors">
-            Manage Donors
-          </Link>
-
-          <Link href="/admin/bookings">
-            Blood Requests
-          </Link>
-
-        </div>
-
-      </aside>
-
-      <main className="flex-1 bg-gray-100">
+      <main className="min-w-0 flex-1 bg-gray-100 p-4 sm:p-6 overflow-x-hidden">
         {children}
       </main>
 

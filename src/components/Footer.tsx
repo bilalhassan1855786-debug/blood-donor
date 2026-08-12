@@ -156,7 +156,7 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="hover:text-white transition">
+            <Link href="/privacy-policy" className="hover:text-white transition">
               {ft.privacy_policy}
             </Link>
             <span className="text-white/20">•</span>
