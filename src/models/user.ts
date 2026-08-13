@@ -29,6 +29,7 @@ weight: {
   type: String,
   trim: true,
   lowercase: true,
+  unique: true,
   sparse: true,
 },
 
