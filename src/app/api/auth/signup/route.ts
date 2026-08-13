@@ -95,8 +95,8 @@ export async function POST(req: Request) {
         fatherName:
           fatherName || "",
 
-        email:
-          email || "",
+        
+          email: email?.trim() || undefined,
 
         password:
           hashedPassword,

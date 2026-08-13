@@ -25,9 +25,11 @@ weight: {
   type: Number,
   default: null,
 },
-   email: {
+  email: {
   type: String,
-  default: "",
+  trim: true,
+  lowercase: true,
+  sparse: true,
 },
 
     password: {
