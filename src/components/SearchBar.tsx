@@ -45,29 +45,29 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-lg p-6">
+    <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-3xl shadow-lg p-3 sm:p-4 md:p-6">
 
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="text-2xl">🔍</div>
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
+        <div className="text-lg sm:text-2xl">🔍</div>
 
         <div>
-          <h2 className="text-xl font-bold text-red-600">
+          <h2 className="text-lg sm:text-xl font-bold text-red-600">
             Blood Availability Search
           </h2>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-xs sm:text-sm">
             Search blood availability by city and blood group
           </p>
         </div>
       </div>
 
       {/* Inputs */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
 
         {/* Blood Group */}
         <div>
-          <label className="block mb-2 font-semibold text-gray-700">
+          <label className="block mb-1 sm:mb-2 font-semibold text-gray-700 text-xs sm:text-sm">
             Blood Group
           </label>
 
@@ -78,9 +78,9 @@ export default function SearchBar() {
             }
             className="
             w-full
-            h-12
-            px-4
-            rounded-xl
+            h-10 sm:h-11 md:h-12
+            px-2 sm:px-3 md:px-4
+            rounded-lg sm:rounded-lg md:rounded-xl
             border
             border-gray-300
             focus:outline-none
@@ -104,7 +104,7 @@ export default function SearchBar() {
 
         {/* City */}
         <div>
-          <label className="block mb-2 font-semibold text-gray-700">
+          <label className="block mb-1 sm:mb-2 font-semibold text-gray-700 text-xs sm:text-sm">
             City
           </label>
 
@@ -121,9 +121,9 @@ export default function SearchBar() {
             }
             className="
             w-full
-            h-12
-            px-4
-            rounded-xl
+            h-10 sm:h-11 md:h-12
+            px-2 sm:px-3 md:px-4
+            rounded-lg sm:rounded-lg md:rounded-xl
             border
             border-gray-300
             focus:outline-none
@@ -133,17 +133,18 @@ export default function SearchBar() {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-end gap-3">
+        <div className="flex items-end gap-2 sm:gap-2.5 md:gap-3">
 
           <button
             onClick={handleSearch}
             className="
             flex-1
-            h-12
+            h-10 sm:h-11 md:h-12
             bg-red-600
             text-white
-            rounded-xl
+            rounded-lg sm:rounded-lg md:rounded-xl
             font-semibold
+            text-xs sm:text-sm
             hover:bg-red-700
             hover:scale-105
             transition-all"
@@ -155,13 +156,14 @@ export default function SearchBar() {
             <button
               onClick={handleReset}
               className="
-              h-12
-              px-5
+              h-10 sm:h-11 md:h-12
+              px-3 sm:px-4 md:px-5
               border-2
               border-red-600
               text-red-600
-              rounded-xl
+              rounded-lg sm:rounded-lg md:rounded-xl
               font-semibold
+              text-xs sm:text-sm
               hover:bg-red-50
               transition-all"
             >
@@ -174,22 +176,23 @@ export default function SearchBar() {
 
       {/* Active Filters */}
       {(bloodGroup || city) && (
-        <div className="mt-6">
+        <div className="mt-3 sm:mt-4 md:mt-6">
 
-          <div className="text-sm text-gray-500 mb-2">
+          <div className="text-xs sm:text-sm text-gray-500 mb-1.5 sm:mb-2">
             Active Filters
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
 
             {bloodGroup && (
               <div className="
                 bg-red-100
                 text-red-700
-                px-4
-                py-2
+                px-2 sm:px-3 md:px-4
+                py-1 sm:py-1.5 md:py-2
                 rounded-full
                 font-semibold
+                text-xs sm:text-sm
               ">
                 🩸 {bloodGroup}
               </div>

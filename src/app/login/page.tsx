@@ -166,15 +166,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center px-3 sm:px-4">
 
-      <div className="bg-white shadow-2xl rounded-3xl p-8 w-full max-w-md">
+      <div className="bg-white shadow-2xl rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-6 md:p-8 w-full max-w-md">
 
         {/* Heading */}
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8">
 
-          <h1 className="text-3xl font-bold text-red-600">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">
             {t(
               lang,
               "login_title"
@@ -192,7 +192,7 @@ export default function LoginPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-4"
+          className="space-y-2 sm:space-y-3 md:space-y-4"
         >
 
           <input
@@ -204,7 +204,7 @@ export default function LoginPage() {
             )}
             value={form.identifier}
             onChange={handleChange}
-            className="w-full border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full border rounded-xl p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
             required
           />
 
@@ -222,7 +222,7 @@ export default function LoginPage() {
               )}
               value={form.password}
               onChange={handleChange}
-              className="w-full border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full border rounded-xl p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             />
 
@@ -285,7 +285,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl transition"
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 sm:py-3 md:py-4 rounded-xl transition"
           >
             {t(
               lang,

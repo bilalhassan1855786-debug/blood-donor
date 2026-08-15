@@ -17,9 +17,12 @@ const display = Space_Grotesk({
 });
 
 // Location picker
-const LocationPicker = dynamic(() => import("@/components/LocationPicker"), {
-  ssr: false,
-});
+const LocationPicker = dynamic(
+  () => import("@/components/LocationPicker"),
+  {
+    ssr: false,
+  }
+);
 
 const BLOOD_GROUPS = [
   "A+",
@@ -92,8 +95,14 @@ type PageState =
   | "already_registered"
   | "form";
 
+type LocationSearchResult = {
+  place_id: string;
+  display_name: string;
+  lat: string;
+  lon: string;
+};
+
 export default function BecomeDonorPage() {
-  // Hooks MUST stay inside the component
   const router = useRouter();
 
   const { lang } = useLanguage();
@@ -107,6 +116,22 @@ export default function BecomeDonorPage() {
 
   const [position, setPosition] =
     useState<[number, number] | null>(null);
+
+  // Location search states
+  const [locationSearch, setLocationSearch] =
+    useState("");
+
+  const [locationResults, setLocationResults] =
+    useState<LocationSearchResult[]>([]);
+
+  const [searchingLocation, setSearchingLocation] =
+    useState(false);
+
+  const [locationError, setLocationError] =
+    useState("");
+
+  const [gettingCurrentLocation, setGettingCurrentLocation] =
+    useState(false);
 
   const [form, setForm] =
     useState<FormState>(INITIAL_FORM);
@@ -240,6 +265,198 @@ export default function BecomeDonorPage() {
       ...prev,
       [key]: value,
     }));
+  };
+
+  // --------------------------------------------------
+  // GET CURRENT LOCATION
+  // --------------------------------------------------
+  const getCurrentLocation = () => {
+    setLocationError("");
+
+    if (!navigator.geolocation) {
+      setLocationError(
+        "Location services are not supported by your browser."
+      );
+      return;
+    }
+
+    setGettingCurrentLocation(true);
+
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        const latitude =
+          location.coords.latitude;
+
+        const longitude =
+          location.coords.longitude;
+
+        setPosition([
+          latitude,
+          longitude,
+        ]);
+
+        setGettingCurrentLocation(false);
+      },
+      (error) => {
+        console.error(
+          "Geolocation error:",
+          error
+        );
+
+        setGettingCurrentLocation(false);
+
+        if (
+          error.code ===
+          error.PERMISSION_DENIED
+        ) {
+          setLocationError(
+            "Location permission was denied. Please allow location access and try again."
+          );
+        } else if (
+          error.code ===
+          error.POSITION_UNAVAILABLE
+        ) {
+          setLocationError(
+            "Your current location could not be determined."
+          );
+        } else if (
+          error.code ===
+          error.TIMEOUT
+        ) {
+          setLocationError(
+            "Location request timed out. Please try again."
+          );
+        } else {
+          setLocationError(
+            "Unable to get your current location."
+          );
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0,
+      }
+    );
+  };
+
+  // --------------------------------------------------
+  // SEARCH LOCATION
+  // --------------------------------------------------
+  const searchLocation = async () => {
+    const query =
+      locationSearch.trim();
+
+    if (!query) {
+      setLocationError(
+        "Please enter a location to search."
+      );
+      return;
+    }
+
+    setSearchingLocation(true);
+    setLocationError("");
+    setLocationResults([]);
+
+    try {
+      const url =
+        `https://nominatim.openstreetmap.org/search?` +
+        new URLSearchParams({
+          q: query,
+          format: "json",
+          addressdetails: "1",
+          limit: "5",
+          countrycodes: "pk",
+        }).toString();
+
+      const response = await fetch(url, {
+        headers: {
+          Accept:
+            "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          "Location search failed"
+        );
+      }
+
+      const results =
+        (await response.json()) as LocationSearchResult[];
+
+      if (!results.length) {
+        setLocationError(
+          "No location found. Try a different city, area, or address."
+        );
+        return;
+      }
+
+      setLocationResults(results);
+    } catch (error) {
+      console.error(
+        "Location search error:",
+        error
+      );
+
+      setLocationError(
+        "Unable to search location. Please check your internet connection and try again."
+      );
+    } finally {
+      setSearchingLocation(false);
+    }
+  };
+
+  // --------------------------------------------------
+  // SELECT SEARCHED LOCATION
+  // --------------------------------------------------
+  const selectLocation = (
+    result: LocationSearchResult
+  ) => {
+    const latitude =
+      Number(result.lat);
+
+    const longitude =
+      Number(result.lon);
+
+    if (
+      Number.isNaN(latitude) ||
+      Number.isNaN(longitude)
+    ) {
+      setLocationError(
+        "Invalid location coordinates."
+      );
+      return;
+    }
+
+    setPosition([
+      latitude,
+      longitude,
+    ]);
+
+    setLocationSearch(
+      result.display_name
+    );
+
+    setLocationResults([]);
+    setLocationError("");
+
+    // Keep the selected location address
+    // inside the donor form as well.
+    setForm((prev) => ({
+      ...prev,
+      locationAddress:
+        result.display_name,
+    }));
+  };
+
+  const handleLocationSearchKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchLocation();
+    }
   };
 
   const handleImageUpload = async (
@@ -432,21 +649,22 @@ export default function BecomeDonorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FBF7F1] py-16 px-4">
+    <div className="min-h-screen bg-[#FBF7F1] py-6 sm:py-10 md:py-16 px-3 sm:px-4">
       <div className="max-w-4xl mx-auto">
+
         {/* Hero */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 bg-[#15141A] text-white rounded-full px-5 py-2 mb-6 text-sm font-semibold">
+        <div className="text-center mb-4 sm:mb-6 md:mb-10">
+          <div className="inline-flex items-center gap-2 bg-[#15141A] text-white rounded-full px-5 py-2 mb-4 sm:mb-5 md:mb-6 text-sm font-semibold">
             {bt.step}
           </div>
 
           <h1
-            className={`${display.className} text-3xl md:text-4xl font-bold text-[#C81E3A]`}
+            className={`${display.className} text-2xl sm:text-3xl md:text-4xl font-bold text-[#C81E3A]`}
           >
             {bt.become_donor}
           </h1>
 
-          <p className="text-[#5B5964] mt-3">
+          <p className="text-[#5B5964] mt-2 sm:mt-3">
             {bt.become_donor_desc}
           </p>
         </div>
@@ -459,12 +677,14 @@ export default function BecomeDonorPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-3xl shadow-sm border border-black/5 p-8 md:p-10">
+        <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-3xl shadow-sm border border-black/5 p-3 sm:p-6 md:p-8 lg:p-10">
+
           <form
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="space-y-3 sm:space-y-4 md:space-y-6"
           >
-                        {/* PHOTO */}
+
+            {/* PHOTO */}
             <Field
               label={bt.profile_photo}
               htmlFor="profile-photo"
@@ -487,13 +707,13 @@ export default function BecomeDonorPage() {
                 <img
                   src={form.photo}
                   alt="profile"
-                  className="w-28 h-28 rounded-full object-cover mt-4 border-4 border-[#C81E3A22]"
+                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover mt-4 border-4 border-[#C81E3A22]"
                 />
               )}
             </Field>
 
             {/* NAME */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               <Field
                 label={bt.full_name}
                 htmlFor="fullName"
@@ -532,7 +752,7 @@ export default function BecomeDonorPage() {
             </div>
 
             {/* CONTACT */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               <Field
                 label={bt.email}
                 htmlFor="email"
@@ -571,7 +791,7 @@ export default function BecomeDonorPage() {
             </div>
 
             {/* AGE / WEIGHT / CNIC */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
               <Field
                 label={bt.age}
                 htmlFor="age"
@@ -715,15 +935,148 @@ export default function BecomeDonorPage() {
                 required
               />
             </Field>
-
-            {/* MAP */}
+                        {/* MAP LOCATION */}
             <Field
               label={bt.optional_live_location}
             >
-              <LocationPicker
-                position={position}
-                setPosition={setPosition}
-              />
+              <div className="space-y-3">
+
+                {/* LOCATION CONTROLS */}
+                <div className="bg-[#FBF7F1] border border-black/5 rounded-2xl p-3 sm:p-4">
+
+                  <div className="flex flex-col sm:flex-row gap-2">
+
+                    {/* SEARCH INPUT */}
+                    <div className="flex-1 relative">
+                      <input
+                        type="text"
+                        value={locationSearch}
+                        onChange={(e) => {
+                          setLocationSearch(
+                            e.target.value
+                          );
+
+                          if (
+                            locationError
+                          ) {
+                            setLocationError("");
+                          }
+                        }}
+                        onKeyDown={
+                          handleLocationSearchKeyDown
+                        }
+                        placeholder="Search your location, city or area..."
+                        className="w-full border border-black/10 bg-white rounded-xl px-4 py-3 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-[#C81E3A]/30"
+                      />
+
+                      <button
+                        type="button"
+                        onClick={searchLocation}
+                        disabled={
+                          searchingLocation
+                        }
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg bg-[#C81E3A] text-white flex items-center justify-center disabled:opacity-50 transition"
+                        aria-label="Search location"
+                      >
+                        {searchingLocation
+                          ? "..."
+                          : "🔎"}
+                      </button>
+                    </div>
+
+                    {/* CURRENT LOCATION */}
+                    <button
+                      type="button"
+                      onClick={
+                        getCurrentLocation
+                      }
+                      disabled={
+                        gettingCurrentLocation
+                      }
+                      className="sm:w-auto w-full bg-[#0F6E66] hover:bg-[#0B5A54] disabled:opacity-50 text-white px-4 py-3 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2 whitespace-nowrap"
+                    >
+                      {gettingCurrentLocation
+                        ? "Getting location..."
+                        : "📍 Use Current Location"}
+                    </button>
+                  </div>
+
+                  {/* SEARCH RESULTS */}
+                  {locationResults.length >
+                    0 && (
+                    <div className="mt-2 bg-white border border-black/10 rounded-xl overflow-hidden shadow-lg">
+
+                      {locationResults.map(
+                        (result) => (
+                          <button
+                            type="button"
+                            key={
+                              result.place_id
+                            }
+                            onClick={() =>
+                              selectLocation(
+                                result
+                              )
+                            }
+                            className="w-full text-left px-4 py-3 hover:bg-[#FBF7F1] border-b last:border-b-0 border-black/5 transition"
+                          >
+                            <div className="flex gap-2">
+                              <span className="text-[#C81E3A]">
+                                📍
+                              </span>
+
+                              <span className="text-sm text-[#15141A]">
+                                {
+                                  result.display_name
+                                }
+                              </span>
+                            </div>
+                          </button>
+                        )
+                      )}
+                    </div>
+                  )}
+
+                  {/* ERROR */}
+                  {locationError && (
+                    <p className="mt-2 text-xs text-[#C81E3A]">
+                      {locationError}
+                    </p>
+                  )}
+
+                  {/* SELECTED LOCATION */}
+                  {position && (
+                    <div className="mt-3 bg-[#0F6E6610] border border-[#0F6E6630] rounded-xl px-3 py-2">
+                      <p className="text-xs font-semibold text-[#0F6E66]">
+                        ✓ Location selected
+                      </p>
+
+                      <p className="text-[11px] text-[#5B5964] mt-1">
+                        Latitude:{" "}
+                        {position[0].toFixed(
+                          6
+                        )}{" "}
+                        • Longitude:{" "}
+                        {position[1].toFixed(
+                          6
+                        )}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* MAP */}
+                <LocationPicker
+                  position={position}
+                  setPosition={setPosition}
+                />
+
+                <p className="text-xs text-[#5B5964]">
+                  Search for your area or use your
+                  current location. You can also select
+                  your location directly from the map.
+                </p>
+              </div>
             </Field>
 
             {/* AVAILABILITY */}
@@ -733,7 +1086,9 @@ export default function BecomeDonorPage() {
             >
               <select
                 id="availabilityStatus"
-                value={form.availabilityStatus}
+                value={
+                  form.availabilityStatus
+                }
                 onChange={(e) =>
                   handleChange(
                     "availabilityStatus",
@@ -760,7 +1115,9 @@ export default function BecomeDonorPage() {
               label={bt.transport_support}
             >
               <select
-                value={form.transportSupport}
+                value={
+                  form.transportSupport
+                }
                 onChange={(e) =>
                   handleChange(
                     "transportSupport",
@@ -812,7 +1169,7 @@ export default function BecomeDonorPage() {
             <button
               type="submit"
               disabled={uploading}
-              className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-50 disabled:cursor-not-allowed text-white py-4 rounded-xl font-bold transition"
+              className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-50 disabled:cursor-not-allowed text-white py-2 sm:py-3 md:py-4 rounded-xl font-bold transition"
             >
               {bt.submit_donor_request}
             </button>
@@ -822,6 +1179,7 @@ export default function BecomeDonorPage() {
     </div>
   );
 }
+
 function Field({
   label,
   htmlFor,
@@ -835,7 +1193,7 @@ function Field({
     <div>
       <label
         htmlFor={htmlFor}
-        className="font-semibold block mb-2 text-sm text-[#15141A]"
+        className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm text-[#15141A]"
       >
         {label}
       </label>
@@ -851,16 +1209,16 @@ function ProgressSteps({
   current: number;
 }) {
   return (
-    <div className="flex items-center justify-center mb-10">
-      <div className="flex items-center gap-3">
+    <div className="flex items-center justify-center mb-4 sm:mb-8 md:mb-10">
+      <div className="flex items-center gap-1.5 sm:gap-3">
         {[1, 2, 3, 4].map(
           (step, i) => (
             <div
               key={step}
-              className="flex items-center gap-3"
+              className="flex items-center gap-1.5 sm:gap-3"
             >
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs ${
+                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-xs ${
                   step < current
                     ? "bg-[#0F6E66] text-white"
                     : step === current
@@ -875,7 +1233,7 @@ function ProgressSteps({
 
               {i < 3 && (
                 <div
-                  className={`w-10 md:w-16 h-1 rounded-full ${
+                  className={`w-6 md:w-10 lg:w-16 h-1 rounded-full ${
                     step < current
                       ? "bg-[#0F6E66]"
                       : "bg-black/10"

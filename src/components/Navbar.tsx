@@ -75,11 +75,11 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-black/5 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md transition duration-300 group-hover:scale-105">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shadow-md transition duration-300 group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Emergency Blood Donation Network"
@@ -95,7 +95,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-5 text-sm font-semibold text-[#15141A]">
+          <div className="hidden lg:flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 text-xs sm:text-sm font-semibold text-[#15141A]">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="hover:text-[#C81E3A] transition">
                 {link.label}
@@ -105,7 +105,7 @@ export default function Navbar() {
             {/* Emergency Button */}
             <Link
               href="/book-blood"
-              className="bg-[#C81E3A] text-white px-4 py-2 rounded-full shadow-sm hover:bg-[#A11530] hover:scale-105 transition"
+              className="bg-[#C81E3A] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-sm hover:bg-[#A11530] hover:scale-105 transition text-xs sm:text-sm"
             >
               🚨 {nt.emergency}
             </Link>
@@ -135,7 +135,7 @@ export default function Navbar() {
             <select
               value={lang}
               onChange={(e) => setLang(e.target.value as any)}
-              className="border border-black/10 rounded-lg px-2 py-1.5 text-xs font-semibold bg-white"
+              className="border border-black/10 rounded-lg px-2 py-1 text-xs font-semibold bg-white"
               aria-label="Language"
             >
               <option value="en">EN</option>
@@ -151,7 +151,7 @@ export default function Navbar() {
 
                 <Link
                   href="/signup"
-                  className="bg-[#15141A] text-white px-4 py-2 rounded-lg hover:bg-black transition"
+                  className="bg-[#15141A] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg hover:bg-black transition text-xs sm:text-sm"
                 >
                   {nt.signup}
                 </Link>
@@ -184,10 +184,10 @@ export default function Navbar() {
           </div>
 
           {/* Mobile controls */}
-          <div className="lg:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-2 sm:gap-3">
             {!loading && user && <NotificationBell />}
             <button
-              className="text-3xl text-[#15141A]"
+              className="text-2xl sm:text-3xl text-[#15141A]"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
@@ -198,21 +198,21 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="lg:hidden py-4 border-t border-black/5 space-y-4">
+          <div className="lg:hidden py-2 sm:py-4 border-t border-black/5 space-y-2 sm:space-y-3">
             <select
               aria-label="Language"
               value={lang}
               onChange={(e) => setLang(e.target.value as any)}
-              className="border border-black/10 rounded-lg p-2 text-sm w-full"
+              className="border border-black/10 rounded-lg p-1.5 sm:p-2 text-xs sm:text-sm w-full"
             >
               <option value="en">English</option>
               <option value="ur">Urdu</option>
               <option value="roman">Roman Urdu</option>
             </select>
 
-            <div className="flex flex-col gap-3 text-[#15141A] font-medium">
+            <div className="flex flex-col gap-1.5 sm:gap-2.5 text-xs sm:text-sm text-[#15141A] font-medium">
               {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className="py-1">
                   {link.label}
                 </Link>
               ))}
@@ -220,33 +220,33 @@ export default function Navbar() {
               <Link
                 href="/book-blood"
                 onClick={() => setMenuOpen(false)}
-                className="bg-[#C81E3A] text-white p-3 rounded-lg text-center font-semibold"
+                className="bg-[#C81E3A] text-white p-2 sm:p-3 rounded-lg text-center font-semibold text-xs sm:text-sm"
               >
                 🚨 {nt.emergency}
               </Link>
 
               {!loading && user && (
-                <Link href="/my-requests" onClick={() => setMenuOpen(false)}>
+                <Link href="/my-requests" onClick={() => setMenuOpen(false)} className="py-1">
                   {nt.my_requests}
                 </Link>
               )}
 
               {!loading && user && (
-                <Link href="/profile" onClick={() => setMenuOpen(false)}>
+                <Link href="/profile" onClick={() => setMenuOpen(false)} className="py-1">
                   {nt.profile}
                 </Link>
               )}
 
               {!loading && !user && (
                 <>
-                  <Link href="/login" onClick={() => setMenuOpen(false)}>
+                  <Link href="/login" onClick={() => setMenuOpen(false)} className="py-1">
                     {nt.login}
                   </Link>
 
                   <Link
                     href="/signup"
                     onClick={() => setMenuOpen(false)}
-                    className="bg-[#15141A] text-white p-2 rounded text-center"
+                    className="bg-[#15141A] text-white p-1.5 sm:p-2 rounded text-center text-xs sm:text-sm"
                   >
                     {nt.signup}
                   </Link>
@@ -255,15 +255,15 @@ export default function Navbar() {
 
               {!loading && isAdmin && (
                 <>
-                  <Link href="/admin" onClick={() => setMenuOpen(false)}>
+                  <Link href="/admin" onClick={() => setMenuOpen(false)} className="py-1">
                     {nt.admin_panel}
                   </Link>
 
-                  <Link href="/admin/bookings" onClick={() => setMenuOpen(false)}>
+                  <Link href="/admin/bookings" onClick={() => setMenuOpen(false)} className="py-1">
                     {nt.bookings || "Bookings"}
                   </Link>
 
-                  <Link href="/admin/add-donor" onClick={() => setMenuOpen(false)}>
+                  <Link href="/admin/add-donor" onClick={() => setMenuOpen(false)} className="py-1">
                     {nt.add_donor}
                   </Link>
                 </>
@@ -272,7 +272,7 @@ export default function Navbar() {
               {!loading && user && (
                 <button
                   onClick={logout}
-                  className="text-left text-[#C81E3A] font-semibold"
+                  className="text-left text-[#C81E3A] font-semibold text-xs sm:text-sm py-1"
                 >
                   {nt.logout}
                 </button>

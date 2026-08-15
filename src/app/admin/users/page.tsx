@@ -60,11 +60,11 @@ export default async function UsersPage({
     .lean();
 
   return (
-    <div className="p-8">
+    <div className="p-3 sm:p-4 md:p-8">
 
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-3 sm:mb-4 md:mb-6">
 
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
           User Management
         </h1>
 
@@ -80,17 +80,17 @@ export default async function UsersPage({
 
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
 
   {users.map((user: any) => (
     <div
       key={user._id.toString()}
-      className="bg-white shadow rounded-xl p-4 border hover:shadow-lg transition"
+      className="bg-white shadow rounded-lg sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-4 border hover:shadow-lg transition"
     >
 
       {/* USER INFO */}
-      <div className="space-y-1 mb-3">
-        <h2 className="text-lg font-bold text-gray-800">
+      <div className="space-y-1 mb-2 sm:mb-3">
+        <h2 className="text-lg sm:text-lg md:text-lg font-bold text-gray-800">
           {user.fullName}
         </h2>
 
@@ -114,23 +114,23 @@ export default async function UsersPage({
           🆔 CNIC: {user.cnic || "N/A"}
         </p>
 
-        <span className="inline-block mt-1 px-2 py-1 text-xs rounded bg-gray-100">
+        <span className="inline-block mt-1 px-2 py-1 text-xs rounded-lg bg-gray-100">
           Role: {user.role}
         </span>
       </div>
 
       {/* ACTIONS */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1 sm:gap-2">
 
         <a
           href={`/admin/users/${user._id}`}
-          className="bg-blue-600 text-white px-3 py-1 text-xs rounded"
+          className="bg-blue-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
         >
           Profile
         </a>
         <a
   href={`/admin/users/edit/${user._id}`}
-  className="bg-purple-600 text-white px-3 py-1 text-xs rounded"
+  className="bg-purple-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
 >
   Edit
 </a>
@@ -140,7 +140,7 @@ export default async function UsersPage({
         {user.phone && (
           <a
             href={`https://wa.me/${user.phone}`}
-            className="bg-green-600 text-white px-3 py-1 text-xs rounded"
+            className="bg-green-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
           >
             WhatsApp
           </a>
@@ -149,7 +149,7 @@ export default async function UsersPage({
         {user.phone && (
           <a
             href={`tel:${user.phone}`}
-            className="bg-yellow-500 text-white px-3 py-1 text-xs rounded"
+            className="bg-yellow-500 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
           >
             Call
           </a>
@@ -157,7 +157,7 @@ export default async function UsersPage({
 
         {user.role === "user" && (
           <form action={`/api/admin/promote?id=${user._id}`} method="POST">
-            <button className="bg-indigo-600 text-white px-3 py-1 text-xs rounded">
+            <button className="bg-indigo-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg">
               Make Admin
             </button>
           </form>
@@ -165,14 +165,14 @@ export default async function UsersPage({
 
         {user.role === "admin" && (
           <form action={`/api/admin/remove-admin?id=${user._id}`} method="POST">
-            <button className="bg-orange-600 text-white px-3 py-1 text-xs rounded">
+            <button className="bg-orange-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg">
               Remove
             </button>
           </form>
         )}
 
         <form action={`/api/admin/delete-user?id=${user._id}`} method="POST">
-          <button className="bg-red-600 text-white px-3 py-1 text-xs rounded">
+          <button className="bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg">
             Delete
           </button>
         </form>

@@ -36,8 +36,11 @@ export default function LocationPicker({
     <MapContainer
       center={[31.5, 74.3]}
       zoom={7}
+      className="rounded-lg sm:rounded-lg md:rounded-xl"
       style={{
-        height: "300px",
+        height: "250px",
+        minHeight: "200px",
+        width: "100%",
       }}
     >
       <TileLayer

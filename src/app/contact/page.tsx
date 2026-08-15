@@ -103,20 +103,20 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#FBF7F1]">
       {/* HERO */}
-      <div className="bg-gradient-to-r from-[#C81E3A] to-[#A11530] text-white py-16 px-4">
+      <div className="bg-gradient-to-r from-[#C81E3A] to-[#A11530] text-white py-6 sm:py-10 md:py-16 px-3 sm:px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.hero_title}</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 md:mb-4">{t.hero_title}</h1>
           <p className="text-white/80 text-lg">{t.hero_desc}</p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-10 md:py-12">
+        <div className="grid lg:grid-cols-2 gap-3 sm:gap-6 md:gap-8">
           {/* LEFT */}
           <div className="space-y-6">
             {/* TEAM */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-black/5">
-              <h2 className="text-2xl font-bold mb-5 text-[#15141A]">{t.our_team_title}</h2>
+            <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm border border-black/5">
+              <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 md:mb-5 text-[#15141A]">{t.our_team_title}</h2>
 
               {teamOffline ? (
                 <OfflineCard
@@ -127,28 +127,28 @@ export default function ContactPage() {
               ) : loadingTeam ? (
                 <p className="text-[#5B5964]">{t.loading}</p>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-3 md:space-y-4">
                   {team.map((member) => {
                     const phone = member.localNumber || member.whatsappNumber;
 
                     return (
                       <div
                         key={member._id}
-                        className="border border-black/5 rounded-xl p-4 hover:shadow-md transition"
+                        className="border border-black/5 rounded-lg sm:rounded-lg md:rounded-xl p-3 sm:p-4 hover:shadow-md transition"
                       >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                           <img
                             src={member.photo || "/team/default-avatar.png"}
                             alt={member.fullName}
-                            className="w-16 h-16 rounded-full object-cover border"
+                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full object-cover border"
                           />
 
                           <div>
-                            <h3 className="font-bold text-lg text-[#15141A]">
+                            <h3 className="font-bold text-base sm:text-lg text-[#15141A]">
                               {member.fullName}
                             </h3>
 
-                            <p className="text-sm text-[#5B5964]">
+                            <p className="text-xs sm:text-sm text-[#5B5964]">
                               {member.role === "superadmin"
                                 ? `👑 ${t.role_superadmin || "Super Admin"}`
                                 : member.role === "developer"
@@ -156,15 +156,15 @@ export default function ContactPage() {
                                 : `🛡 ${t.role_admin || "Admin"}`}
                             </p>
 
-                            <p className="text-sm text-[#5B5964]">📍 {member.city || "-"}</p>
+                            <p className="text-xs sm:text-sm text-[#5B5964]">📍 {member.city || "-"}</p>
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-2 mt-4">
+                        <div className="flex flex-wrap gap-2 sm:gap-3 mt-3 sm:mt-4">
                           {phone && (
                             <a
                               href={`tel:${phone}`}
-                              className="bg-[#0F6E66] text-white px-3 py-2 rounded-lg text-sm"
+                              className="bg-[#0F6E66] text-white px-3 py-2 rounded-lg text-xs sm:text-sm"
                             >
                               📞 {t.call}
                             </a>
@@ -175,7 +175,7 @@ export default function ContactPage() {
                               href={`https://wa.me/${member.whatsappNumber}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="bg-[#C81E3A] text-white px-3 py-2 rounded-lg text-sm"
+                              className="bg-[#C81E3A] text-white px-3 py-2 rounded-lg text-xs sm:text-sm"
                             >
                               {t.whatsapp}
                             </a>
@@ -184,7 +184,7 @@ export default function ContactPage() {
                           {member.email && (
                             <a
                               href={`mailto:${member.email}`}
-                              className="bg-[#15141A] text-white px-3 py-2 rounded-lg text-sm"
+                              className="bg-[#15141A] text-white px-3 py-2 rounded-lg text-xs sm:text-sm"
                             >
                               {t.email}
                             </a>
@@ -198,14 +198,14 @@ export default function ContactPage() {
             </div>
 
             {/* EMERGENCY */}
-            <div className="bg-[#C81E3A] text-white p-6 rounded-2xl shadow-sm">
-              <h2 className="text-2xl font-bold mb-3">{t.emergency_title}</h2>
+            <div className="bg-[#C81E3A] text-white p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 md:mb-3">{t.emergency_title}</h2>
               <p className="mb-4 text-white/90">{t.emergency_desc}</p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 <a
                   href="/book-blood"
-                  className="bg-white text-[#C81E3A] px-5 py-2 rounded-lg font-semibold"
+                  className="bg-white text-[#C81E3A] px-4 sm:px-5 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base"
                 >
                   {t.request_blood}
                 </a>
@@ -218,8 +218,8 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT FORM */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-black/5">
-            <h2 className="text-2xl font-bold mb-6 text-[#15141A]">{t.send_message_title}</h2>
+          <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm border border-black/5">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[#15141A]">{t.send_message_title}</h2>
 
             {submitOfflineMsg && (
               <div className="bg-[#C81E3A12] border border-[#C81E3A40] rounded-xl p-4 mb-4 text-sm text-[#C81E3A]">
@@ -227,7 +227,7 @@ export default function ContactPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 md:space-y-4">
               <input
                 placeholder={t.full_name}
                 value={form.fullName}
@@ -272,7 +272,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white py-3 rounded-xl font-semibold transition"
+                className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white py-2 sm:py-3 md:py-4 rounded-xl font-semibold transition"
               >
                 {sending ? t.loading : t.send_message_btn}
               </button>

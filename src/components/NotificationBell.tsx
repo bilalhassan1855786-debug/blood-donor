@@ -39,7 +39,7 @@ export default function NotificationBell() {
       href="/notifications"
       className="relative flex items-center"
     >
-      <span className="text-2xl">
+      <span className="text-lg sm:text-2xl">
         🔔
       </span>
 
@@ -51,15 +51,15 @@ export default function NotificationBell() {
             -right-2
             bg-red-600
             text-white
-            text-[10px]
+            text-[7px] sm:text-[10px]
             font-bold
             rounded-full
-            min-w-[18px]
-            h-[18px]
+            min-w-[16px] sm:min-w-[18px]
+            h-[16px] sm:h-[18px]
             flex
             items-center
             justify-center
-            px-1
+            px-0.5
           "
         >
           {count > 99

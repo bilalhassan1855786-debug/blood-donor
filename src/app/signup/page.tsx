@@ -197,13 +197,13 @@ export default function SignupPage() {
     };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-3 sm:px-4">
 
-      <div className="w-full max-w-xl bg-white rounded-3xl shadow-xl p-8">
+      <div className="w-full max-w-xl bg-white rounded-lg sm:rounded-2xl md:rounded-3xl shadow-xl p-3 sm:p-6 md:p-8">
 
-        <div className="text-center mb-6">
+        <div className="text-center mb-4 sm:mb-6">
 
-          <h1 className="text-3xl font-bold text-red-600">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">
             {t(
               lang,
               "signup"
@@ -216,7 +216,7 @@ export default function SignupPage() {
           onSubmit={
             handleSubmit
           }
-          className="space-y-4"
+          className="space-y-2 sm:space-y-3 md:space-y-4"
         >
 
          {/* PHOTO */}
@@ -224,7 +224,7 @@ export default function SignupPage() {
 <div>
   <label
     htmlFor="profilePhoto"
-    className="block mb-2 font-medium"
+    className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm"
   >
     {t(lang, "profile_photo")}
   </label>
@@ -248,7 +248,7 @@ export default function SignupPage() {
     <img
       src={form.photo}
       alt="profile"
-      className="w-24 h-24 rounded-full object-cover mt-3 border"
+      className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full object-cover mt-3 border"
     />
   )}
 </div>
@@ -256,7 +256,7 @@ export default function SignupPage() {
 {/* FULL NAME */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "full_name")}
   </label>
 
@@ -273,7 +273,7 @@ export default function SignupPage() {
 {/* EMAIL */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "email_optional")}
   </label>
 
@@ -290,7 +290,7 @@ export default function SignupPage() {
 {/* PASSWORD */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "password")}
   </label>
 
@@ -308,7 +308,7 @@ export default function SignupPage() {
 {/* WHATSAPP */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "phone")}
   </label>
 
@@ -325,7 +325,7 @@ export default function SignupPage() {
 {/* AGE */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "age")}
   </label>
 
@@ -343,7 +343,7 @@ export default function SignupPage() {
 {/* WEIGHT */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "weight_optional")}
   </label>
 
@@ -360,7 +360,7 @@ export default function SignupPage() {
 {/* CITY */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "city")}
   </label>
 
@@ -377,7 +377,7 @@ export default function SignupPage() {
 {/* ADDRESS */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "address")}
   </label>
 
@@ -394,7 +394,7 @@ export default function SignupPage() {
 {/* CNIC */}
 
 <div>
-  <label className="block mb-2 font-medium">
+  <label className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "cnic_optional")}
   </label>
 
@@ -410,7 +410,7 @@ export default function SignupPage() {
 {/* BLOOD GROUP */}
 
 <div>
-  <label htmlFor="bloodGroup" className="block mb-2 font-medium">
+  <label htmlFor="bloodGroup" className="block mb-1 sm:mb-2 font-medium text-xs sm:text-sm">
     {t(lang, "blood_group")}
   </label>
 
@@ -464,7 +464,7 @@ export default function SignupPage() {
 </div>
           <button
             type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 font-semibold"
+            className="w-full bg-red-600 hover:bg-red-700 text-white rounded-xl py-2 sm:py-3 md:py-4 font-semibold"
           >
             {t(
               lang,

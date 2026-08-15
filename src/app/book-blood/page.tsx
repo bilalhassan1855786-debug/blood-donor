@@ -162,10 +162,10 @@ export default function BookBloodPage() {
 
   if (authState === "guest") {
     return (
-      <div className="min-h-screen bg-[#FBF7F1] flex items-center justify-center px-4">
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 text-center">
+      <div className="min-h-screen bg-[#FBF7F1] flex items-center justify-center px-3 sm:px-4">
+        <div className="w-full max-w-md bg-white rounded-lg sm:rounded-2xl md:rounded-3xl shadow-xl p-3 sm:p-6 md:p-8 lg:p-10 text-center">
           <div className="text-6xl mb-6">🔒</div>
-          <h1 className="text-2xl font-bold text-[#15141A] mb-3">
+          <h1 className="text-xl sm:text-2xl font-bold text-[#15141A] mb-3">
             Please Login First
           </h1>
           <p className="text-[#5B5964] leading-7 mb-8">
@@ -174,10 +174,10 @@ export default function BookBloodPage() {
             minute.
           </p>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
             <Link
               href="/login?redirect=/book-blood"
-              className="bg-[#C81E3A] hover:bg-[#A11530] text-white py-3 rounded-xl font-semibold transition"
+              className="bg-[#C81E3A] hover:bg-[#A11530] text-white py-2 sm:py-3 md:py-4 rounded-xl font-semibold transition"
             >
               Login
             </Link>
@@ -194,9 +194,9 @@ export default function BookBloodPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FBF7F1] py-10 px-4">
-      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8">
-        <h1 className="text-3xl font-bold text-center text-[#C81E3A] mb-8">
+    <div className="min-h-screen bg-[#FBF7F1] py-4 sm:py-8 md:py-10 px-3 sm:px-4">
+      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-6 md:p-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#C81E3A] mb-4 sm:mb-6 md:mb-8">
           {t.blood_request_form}
         </h1>
 
@@ -206,10 +206,10 @@ export default function BookBloodPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 md:space-y-5">
           {/* Requester */}
           <div>
-            <label htmlFor="requesterName" className="font-semibold block mb-2">
+            <label htmlFor="requesterName" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.your_name}
             </label>
             <input
@@ -225,7 +225,7 @@ export default function BookBloodPage() {
 
           {/* Patient */}
           <div>
-            <label htmlFor="patientName" className="font-semibold block mb-2">
+            <label htmlFor="patientName" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.patient_name}
             </label>
             <input
@@ -241,7 +241,7 @@ export default function BookBloodPage() {
 
           {/* Gender */}
           <div>
-            <label htmlFor="gender" className="font-semibold block mb-2">
+            <label htmlFor="gender" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.select_gender}
             </label>
             <select
@@ -262,7 +262,7 @@ export default function BookBloodPage() {
 
           {/* Age */}
           <div>
-            <label className="font-semibold block mb-2">{t.patient_age}</label>
+            <label className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">{t.patient_age}</label>
             <input
               name="patientage"
               value={form.patientage}
@@ -276,7 +276,7 @@ export default function BookBloodPage() {
 
           {/* Disease */}
           <div>
-            <label className="font-semibold block mb-2">{t.disease_reason}</label>
+            <label className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">{t.disease_reason}</label>
             <input
               name="disease"
               value={form.disease}
@@ -289,7 +289,7 @@ export default function BookBloodPage() {
 
           {/* Blood Group */}
           <div>
-            <label htmlFor="bloodGroup" className="font-semibold block mb-2">
+            <label htmlFor="bloodGroup" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.select_blood_group}
             </label>
             <select
@@ -315,7 +315,7 @@ export default function BookBloodPage() {
 
           {/* Units */}
           <div>
-            <label htmlFor="bloodUnits" className="font-semibold block mb-2">
+            <label htmlFor="bloodUnits" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.blood_units}
             </label>
             <input
@@ -332,7 +332,7 @@ export default function BookBloodPage() {
 
           {/* HB */}
           <div>
-            <label htmlFor="patientHb" className="font-semibold block mb-2">
+            <label htmlFor="patientHb" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.patient_hb}
             </label>
             <input
@@ -347,7 +347,7 @@ export default function BookBloodPage() {
 
           {/* Hospital */}
           <div>
-            <label htmlFor="hospital" className="font-semibold block mb-2">
+            <label htmlFor="hospital" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.hospital_name}
             </label>
             <input
@@ -363,7 +363,7 @@ export default function BookBloodPage() {
 
           {/* Address */}
           <div>
-            <label htmlFor="location" className="font-semibold block mb-2">
+            <label htmlFor="location" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.hospital_location}
             </label>
             <input
@@ -379,7 +379,7 @@ export default function BookBloodPage() {
 
           {/* City */}
           <div>
-            <label htmlFor="city" className="font-semibold block mb-2">
+            <label htmlFor="city" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.city}
             </label>
             <input
@@ -402,7 +402,7 @@ export default function BookBloodPage() {
             {t.use_current_location}
           </button>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-1 sm:gap-2 md:gap-3">
             <input
               value={form.latitude}
               readOnly
@@ -429,7 +429,7 @@ export default function BookBloodPage() {
 
           {/* Contact */}
           <div>
-            <label htmlFor="contactNumber" className="font-semibold block mb-2">
+            <label htmlFor="contactNumber" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.contact_number}
             </label>
             <input
@@ -453,7 +453,7 @@ export default function BookBloodPage() {
 
           {/* Date */}
           <div>
-            <label htmlFor="dateNeeded" className="font-semibold block mb-2">
+            <label htmlFor="dateNeeded" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.date_needed}
             </label>
             <input
@@ -470,7 +470,7 @@ export default function BookBloodPage() {
 
           {/* Urgency */}
           <div>
-            <label htmlFor="urgency" className="font-semibold block mb-2">
+            <label htmlFor="urgency" className="font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm">
               {t.urgency}
             </label>
             <select
@@ -515,7 +515,7 @@ export default function BookBloodPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white py-3 rounded-lg font-bold transition"
+            className="w-full bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white py-2 sm:py-3 md:py-4 rounded-lg font-bold transition"
           >
             {submitting ? "..." : t.submit_request}
           </button>

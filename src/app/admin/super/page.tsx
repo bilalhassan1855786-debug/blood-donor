@@ -84,14 +84,14 @@ export default function SuperAdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-8">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-6">
         Super Admin Dashboard
       </h1>
 
       {/* STATS */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-4 md:mb-6">
 
         <Stat title="Users" value={users.length} />
         <Stat title="Admins" value={users.filter(u => u.role === "admin").length} />
@@ -100,7 +100,7 @@ export default function SuperAdminPage() {
       </div>
 
       {/* USERS */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
 
         {loading ? (
           <p>Loading...</p>
@@ -110,23 +110,23 @@ export default function SuperAdminPage() {
           users.map((u) => (
             <div
               key={u._id}
-              className="bg-white p-4 rounded-xl shadow hover:shadow-lg"
+              className="bg-white p-3 sm:p-4 md:p-4 rounded-lg sm:rounded-lg md:rounded-xl shadow hover:shadow-lg"
             >
-              <h2 className="font-bold">{u.fullName}</h2>
-              <p className="text-sm text-gray-500">{u.email}</p>
-              <p className="text-sm">🩸 {u.bloodGroup || "-"}</p>
-              <p className="text-sm">📍 {u.city || "-"}</p>
+              <h2 className="font-bold text-sm sm:text-sm">{u.fullName}</h2>
+              <p className="text-xs sm:text-sm text-gray-500">{u.email}</p>
+              <p className="text-xs sm:text-sm">🩸 {u.bloodGroup || "-"}</p>
+              <p className="text-xs sm:text-sm">📍 {u.city || "-"}</p>
 
-              <span className="text-xs px-2 py-1 bg-gray-200 rounded mt-2 inline-block">
+              <span className="text-xs px-2 py-1 bg-gray-200 rounded-lg mt-2 inline-block">
                 {u.role}
               </span>
 
-              <div className="flex gap-2 mt-3 flex-wrap">
+              <div className="flex gap-1 sm:gap-2 mt-2 sm:mt-3 flex-wrap">
 
                 {(u.role === "user" || u.role === "developer") && (
                   <button
                     onClick={() => makeAdmin(u._id)}
-                    className="bg-green-600 text-white px-3 py-1 text-xs rounded"
+                    className="bg-green-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
                   >
                     Make Admin
                   </button>
@@ -135,7 +135,7 @@ export default function SuperAdminPage() {
                 {u.role !== "developer" && u.role !== "superadmin" && (
                   <button
                     onClick={() => makeDeveloper(u._id)}
-                    className="bg-indigo-600 text-white px-3 py-1 text-xs rounded"
+                    className="bg-indigo-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-lg"
                   >
                     Make Developer
                   </button>
@@ -172,9 +172,9 @@ export default function SuperAdminPage() {
 /* reuse */
 function Stat({ title, value }: any) {
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
-      <p className="text-sm text-gray-500">{title}</p>
-      <h2 className="text-2xl font-bold">{value}</h2>
+    <div className="bg-white p-3 sm:p-4 md:p-4 rounded-lg sm:rounded-lg md:rounded-xl shadow">
+      <p className="text-xs sm:text-sm text-gray-500">{title}</p>
+      <h2 className="text-xl sm:text-2xl md:text-2xl font-bold">{value}</h2>
     </div>
   );
 }

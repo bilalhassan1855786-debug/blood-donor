@@ -51,18 +51,18 @@ export default function Footer() {
   const ft = footerTranslations[lang as keyof typeof footerTranslations];
 
   return (
-    <footer className="bg-[#15141A] text-white mt-20">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-10">
+    <footer className="bg-[#15141A] text-white mt-8 sm:mt-16 md:mt-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-12 md:py-16">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6 md:gap-10">
           {/* Brand */}
           <div>
-            <h2 className={`${display.className} text-xl font-bold text-[#C81E3A] leading-tight`}>
+            <h2 className={`${display.className} text-sm sm:text-base md:text-lg font-bold text-[#C81E3A] leading-tight`}>
               EMERGENCY BLOOD
               <br />
               DONATION NETWORK
             </h2>
 
-            <p className="text-white/50 mt-4 leading-7 text-sm">
+            <p className="text-white/50 mt-2 sm:mt-4 leading-6 text-xs sm:text-sm">
               {ft.brand_desc}
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function Footer() {
               {ft.quick_links}
             </h3>
 
-            <ul className="space-y-3 text-white/60 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2.5 md:space-y-3 text-white/60 text-xs sm:text-sm">
               <li>
                 <Link href="/" className="hover:text-white transition">
                   {ft.home}
@@ -113,10 +113,10 @@ export default function Footer() {
               {ft.emergency_title}
             </h3>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 sm:gap-2.5 md:gap-3">
               <a
                 href={`tel:${CONTACTS[0].phone}`}
-                className="motion-safe:animate-pulse bg-[#C81E3A] hover:bg-[#A11530] text-white text-center py-3 px-4 rounded-xl font-semibold transition"
+                className="motion-safe:animate-pulse bg-[#C81E3A] hover:bg-[#A11530] text-white text-center py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition"
               >
                 📞 {ft.call_now}
               </a>
@@ -124,7 +124,7 @@ export default function Footer() {
                 href={`https://wa.me/${CONTACTS[0].whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/15 border border-white/10 text-white text-center py-3 px-4 rounded-xl font-semibold transition"
+                className="bg-white/10 hover:bg-white/15 border border-white/10 text-white text-center py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition"
               >
                 💬 {ft.whatsapp}
               </a>
@@ -138,24 +138,24 @@ export default function Footer() {
         </div>
 
         {/* Team contacts */}
-        <div className="mt-14 pt-12 border-t border-white/10">
-          <h3 className={`${display.className} text-xl font-bold mb-8 text-center`}>
+        <div className="mt-6 sm:mt-10 md:mt-14 pt-6 sm:pt-8 md:pt-12 border-t border-white/10">
+          <h3 className={`${display.className} text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 md:mb-8 text-center`}>
             {ft.contacts_heading}
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {CONTACTS.map((contact) => (
               <ContactCard key={contact.name} contact={contact} ft={ft} />
             ))}
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <div className="border-t border-white/10 mt-6 sm:mt-10 md:mt-12 pt-4 sm:pt-6 flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-3 md:gap-4 text-white/40 text-xs">
           <p>
             © {new Date().getFullYear()} EMERGENCY BLOOD DONATION NETWORK. {ft.rights_reserved}
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-5">
             <Link href="/privacy-policy" className="hover:text-white transition">
               {ft.privacy_policy}
             </Link>
@@ -185,18 +185,18 @@ function ContactCard({
   const roleLabel = isSuperAdmin ? ft.super_admin : ft.admin;
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:border-white/20 transition">
-      <div className="flex items-center gap-3 mb-4">
+    <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 hover:border-white/20 transition">
+      <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4 md:mb-4">
         <div
-          className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-semibold"
+          className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-base sm:text-lg font-semibold"
           style={{ backgroundColor: `${badgeColor}22`, color: badgeColor }}
         >
           👤
         </div>
         <div>
-          <p className="font-semibold text-white text-sm">{contact.name}</p>
+          <p className="font-semibold text-white text-xs sm:text-sm">{contact.name}</p>
           <span
-            className="text-[11px] font-medium px-2 py-0.5 rounded-full inline-block mt-0.5"
+            className="text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-full inline-block mt-0.5"
             style={{ backgroundColor: `${badgeColor}22`, color: badgeColor }}
           >
             {roleLabel}
@@ -204,15 +204,15 @@ function ContactCard({
         </div>
       </div>
 
-      <div className={`${mono.className} text-xs text-white/50 space-y-1 mb-4`}>
+      <div className={`${mono.className} text-xs text-white/50 space-y-0.5 sm:space-y-1 mb-2 sm:mb-4 md:mb-4`}>
         <p>{contact.phone}</p>
         <p className="truncate">{contact.email}</p>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-1.5 sm:gap-2">
         <a
           href={`tel:${contact.phone}`}
-          className="flex-1 text-center bg-[#C81E3A] hover:bg-[#A11530] text-white text-xs font-semibold py-2 rounded-lg transition"
+          className="flex-1 text-center bg-[#C81E3A] hover:bg-[#A11530] text-white text-xs font-semibold py-1.5 sm:py-2 rounded transition"
         >
           📞 {ft.call_now}
         </a>
@@ -220,7 +220,7 @@ function ContactCard({
           href={`https://wa.me/${contact.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 text-center bg-white/10 hover:bg-white/15 border border-white/10 text-white text-xs font-semibold py-2 rounded-lg transition"
+          className="flex-1 text-center bg-white/10 hover:bg-white/15 border border-white/10 text-white text-xs font-semibold py-1.5 sm:py-2 rounded transition"
         >
           💬 {ft.chat}
         </a>

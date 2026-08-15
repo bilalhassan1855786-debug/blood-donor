@@ -127,10 +127,12 @@ lat,
 lng,
 ]}
 zoom={13}
+className="rounded-lg sm:rounded-lg md:rounded-xl"
 style={{
 height:
-"400px",
-
+"300px",
+minHeight:
+"250px",
 
     width:
       "100%",

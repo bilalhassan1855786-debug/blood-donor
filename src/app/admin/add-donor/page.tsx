@@ -126,21 +126,21 @@ export default function AddDonorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
 
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg sm:rounded-lg md:rounded-2xl p-4 sm:p-6 md:p-8">
 
-        <h1 className="text-3xl font-bold text-red-600 mb-8">
+        <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-red-600 mb-4 sm:mb-6 md:mb-8">
           Add Donor
         </h1>
 
         <form
           onSubmit={submit}
-          className="grid md:grid-cols-2 gap-5"
+          className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-5"
         >
 
           <div>
-            <label htmlFor="fullName" className="font-medium">
+            <label htmlFor="fullName" className="font-medium text-sm">
               Full Name
             </label>
 
@@ -153,13 +153,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="fatherName" className="font-medium">
+            <label htmlFor="fatherName" className="font-medium text-sm">
               Father Name
             </label>
 
@@ -174,13 +174,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="cnic" className="font-medium">
+            <label htmlFor="cnic" className="font-medium text-sm">
               CNIC
             </label>
 
@@ -193,12 +193,12 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="age" className="font-medium">
+            <label htmlFor="age" className="font-medium text-sm">
               Age
             </label>
 
@@ -212,12 +212,12 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="bloodGroup" className="font-medium">
+            <label htmlFor="bloodGroup" className="font-medium text-sm">
               Blood Group
             </label>
 
@@ -232,7 +232,7 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             >
               <option value="">
@@ -251,7 +251,7 @@ export default function AddDonorPage() {
           </div>
 
           <div>
-            <label htmlFor="city" className="font-medium">
+            <label htmlFor="city" className="font-medium text-sm">
               City
             </label>
 
@@ -264,13 +264,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="whatsappNumber" className="font-medium">
+            <label htmlFor="whatsappNumber" className="font-medium text-sm">
               WhatsApp
             </label>
 
@@ -285,13 +285,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="localNumber" className="font-medium">
+            <label htmlFor="localNumber" className="font-medium text-sm">
               Local Number
             </label>
 
@@ -306,12 +306,12 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="font-medium">
+            <label htmlFor="email" className="font-medium text-sm">
               Email
             </label>
 
@@ -327,12 +327,12 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="lastDonationDate" className="font-medium">
+            <label htmlFor="lastDonationDate" className="font-medium text-sm">
               Last Donation Date
             </label>
 
@@ -348,12 +348,12 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="availabilityStatus" className="font-medium">
+            <label htmlFor="availabilityStatus" className="font-medium text-sm">
               Availability
             </label>
 
@@ -368,7 +368,7 @@ export default function AddDonorPage() {
                   e.target.value as DonorForm["availabilityStatus"]
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             >
               <option value="available">
                 Available
@@ -389,7 +389,7 @@ export default function AddDonorPage() {
           </div>
 
           <div>
-            <label htmlFor="transportSupport" className="font-medium">
+            <label htmlFor="transportSupport" className="font-medium text-sm">
               Transport Support
             </label>
 
@@ -404,7 +404,7 @@ export default function AddDonorPage() {
                   e.target.value as DonorForm["transportSupport"]
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
             >
               <option value="yes">
                 Yes
@@ -421,7 +421,7 @@ export default function AddDonorPage() {
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="presentAddress" className="font-medium">
+            <label htmlFor="presentAddress" className="font-medium text-sm">
               Present Address
             </label>
 
@@ -436,13 +436,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="permanentAddress" className="font-medium">
+            <label htmlFor="permanentAddress" className="font-medium text-sm">
               Permanent Address
             </label>
 
@@ -457,13 +457,13 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               required
             />
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="bio" className="font-medium">
+            <label htmlFor="bio" className="font-medium text-sm">
               Bio
             </label>
 
@@ -476,18 +476,18 @@ export default function AddDonorPage() {
                   e.target.value
                 )
               }
-              className="border p-3 rounded-lg w-full"
+              className="border p-2 sm:p-3 rounded-lg w-full text-sm"
               rows={4}
             />
           </div>
 
           <button
             disabled={loading}
-            className="md:col-span-2 bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl font-bold"
+            className="md:col-span-2 bg-red-600 hover:bg-red-700 text-white py-2 sm:py-3 md:py-4 rounded-lg md:rounded-xl font-bold text-sm sm:text-base"
           >
             {loading
               ? "Adding..."
-              : "Add Donor"}
+              : "Add Donor"}  
           </button>
 
         </form>

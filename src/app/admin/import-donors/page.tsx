@@ -79,15 +79,15 @@ export default function ImportDonorsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF7F1] py-12 px-4">
+    <div className="min-h-screen bg-[#FBF7F1] py-8 sm:py-10 md:py-12 px-3 sm:px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#C81E3A] mb-2">{t.page_title}</h1>
-          <p className="text-[#5B5964] text-sm max-w-xl mx-auto">{t.page_desc}</p>
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-[#C81E3A] mb-1 sm:mb-2">{t.page_title}</h1>
+          <p className="text-[#5B5964] text-xs sm:text-sm max-w-xl mx-auto">{t.page_desc}</p>
         </div>
 
         {error && (
-          <div className="bg-[#C81E3A12] border border-[#C81E3A40] rounded-xl p-4 mb-6 text-sm text-[#C81E3A] text-center">
+          <div className="bg-[#C81E3A12] border border-[#C81E3A40] rounded-lg sm:rounded-lg md:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 text-xs sm:text-sm text-[#C81E3A] text-center">
             {error}
           </div>
         )}

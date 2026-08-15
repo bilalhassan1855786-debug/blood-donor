@@ -42,7 +42,7 @@ export default function ImportAnalyticsPage() {
 
   if (offline) {
     return (
-      <div className="min-h-screen bg-[#FBF7F1] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#FBF7F1] flex items-center justify-center px-3 sm:px-4">
         <OfflineCard
           title="Internet Required"
           description="Import analytics can't be loaded. Reconnect and try again."
@@ -64,15 +64,15 @@ export default function ImportAnalyticsPage() {
   const maxGroup = Math.max(...data.topBloodGroups.map((g) => g.count), 1);
 
   return (
-    <div className="min-h-screen bg-[#FBF7F1] py-12 px-4">
+    <div className="min-h-screen bg-[#FBF7F1] py-8 sm:py-10 md:py-12 px-3 sm:px-4">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#C81E3A] mb-2">{t.title}</h1>
-          <p className="text-[#5B5964] text-sm">{t.desc}</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-[#C81E3A] mb-1 sm:mb-2">{t.title}</h1>
+          <p className="text-[#5B5964] text-xs sm:text-sm">{t.desc}</p>
         </div>
 
         {/* Top stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
           <StatCard label={t.total_imports} value={data.totalImports} color="#15141A" />
           <StatCard label={t.today_imports} value={data.todayImports} color="#0F6E66" />
           <StatCard
@@ -83,14 +83,14 @@ export default function ImportAnalyticsPage() {
         </div>
 
         {/* Last import */}
-        <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-8">
-          <p className="text-xs uppercase tracking-wider text-black/40 font-semibold mb-2">
+        <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-2xl border border-black/5 shadow-sm p-3 sm:p-4 md:p-6 mb-6 sm:mb-8">
+          <p className="text-xs uppercase tracking-wider text-black/40 font-semibold mb-1 sm:mb-2">
             {t.last_import}
           </p>
           {data.lastImport ? (
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <p className="font-semibold text-[#15141A]">{data.lastImport.fileName}</p>
-              <p className="text-sm text-[#5B5964]">
+            <div className="flex items-center justify-between flex-wrap gap-1 sm:gap-2">
+              <p className="font-semibold text-[#15141A] text-sm">{data.lastImport.fileName}</p>
+              <p className="text-xs sm:text-sm text-[#5B5964]">
                 {data.lastImport.imported} donors ·{" "}
                 {new Date(data.lastImport.createdAt).toLocaleString()}
               </p>
@@ -100,14 +100,14 @@ export default function ImportAnalyticsPage() {
           )}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           {/* Top cities */}
-          <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6">
-            <h2 className="font-bold text-[#15141A] mb-5">{t.top_cities_title}</h2>
+          <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-2xl border border-black/5 shadow-sm p-3 sm:p-4 md:p-6">
+            <h2 className="font-bold text-[#15141A] mb-3 sm:mb-5 text-sm sm:text-base">{t.top_cities_title}</h2>
             {data.topCities.length === 0 ? (
-              <p className="text-sm text-[#5B5964]">{t.no_data}</p>
+              <p className="text-xs sm:text-sm text-[#5B5964]">{t.no_data}</p>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {data.topCities.map((c) => (
                   <BarRow key={c.city} label={c.city} count={c.count} max={maxCity} color="#C81E3A" />
                 ))}
@@ -116,12 +116,12 @@ export default function ImportAnalyticsPage() {
           </div>
 
           {/* Top blood groups */}
-          <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6">
-            <h2 className="font-bold text-[#15141A] mb-5">{t.top_blood_groups_title}</h2>
+          <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-2xl border border-black/5 shadow-sm p-3 sm:p-4 md:p-6">
+            <h2 className="font-bold text-[#15141A] mb-3 sm:mb-5 text-sm sm:text-base">{t.top_blood_groups_title}</h2>
             {data.topBloodGroups.length === 0 ? (
-              <p className="text-sm text-[#5B5964]">{t.no_data}</p>
+              <p className="text-xs sm:text-sm text-[#5B5964]">{t.no_data}</p>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {data.topBloodGroups.map((g) => (
                   <BarRow
                     key={g.bloodGroup}
@@ -142,8 +142,8 @@ export default function ImportAnalyticsPage() {
 
 function StatCard({ label, value, color }: { label: string; value: number; color: string }) {
   return (
-    <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6">
-      <p className="text-3xl font-bold" style={{ color }}>
+    <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-2xl border border-black/5 shadow-sm p-3 sm:p-4 md:p-6">
+      <p className="text-2xl sm:text-3xl md:text-3xl font-bold" style={{ color }}>
         {value}
       </p>
       <p className="text-xs text-[#5B5964] mt-1">{label}</p>
@@ -164,7 +164,7 @@ function BarRow({
 }) {
   return (
     <div>
-      <div className="flex justify-between mb-1.5 text-sm">
+      <div className="flex justify-between mb-1 sm:mb-1.5 text-xs sm:text-sm">
         <span className="font-semibold text-[#15141A]">{label}</span>
         <span className="font-semibold" style={{ color }}>
           {count}

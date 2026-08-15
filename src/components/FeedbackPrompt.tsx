@@ -146,30 +146,30 @@ export default function FeedbackPrompt() {
   if (step === "closed") return null;
 
   return (
-    <div className="fixed bottom-4 right-4 left-4 sm:left-auto sm:w-96 z-[9999]">
-      <div className="bg-white rounded-2xl shadow-2xl border border-black/10 p-5 relative animate-in fade-in slide-in-from-bottom-4">
+    <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-4 sm:right-4 sm:w-96 z-[9999]">
+      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl shadow-2xl border border-black/10 p-3 sm:p-4 md:p-5 relative animate-in fade-in slide-in-from-bottom-4">
         <button
           onClick={dismiss}
           aria-label="Close"
-          className="absolute top-3 right-3 text-[#5B5964] hover:text-black text-lg leading-none"
+          className="absolute top-2 sm:top-3 right-2 sm:right-3 text-[#5B5964] hover:text-black text-lg sm:text-lg leading-none"
         >
           ×
         </button>
 
         {step === "ask" && (
           <>
-            <h3 className="font-bold text-[#15141A] mb-1 pr-6">{t.title}</h3>
-            <p className="text-sm text-[#5B5964] mb-4">{t.subtitle}</p>
-            <div className="flex gap-2">
+            <h3 className="font-bold text-[#15141A] mb-0.5 sm:mb-1 pr-6 text-sm sm:text-base">{t.title}</h3>
+            <p className="text-xs sm:text-sm text-[#5B5964] mb-2 sm:mb-3 md:mb-4">{t.subtitle}</p>
+            <div className="flex gap-1.5 sm:gap-2">
               <button
                 onClick={handlePositive}
-                className="flex-1 bg-[#C81E3A] hover:bg-[#A11530] text-white text-sm font-semibold py-2 rounded-lg transition"
+                className="flex-1 bg-[#C81E3A] hover:bg-[#A11530] text-white text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 {t.yes}
               </button>
               <button
                 onClick={handleNegative}
-                className="flex-1 bg-black/5 hover:bg-black/10 text-[#15141A] text-sm font-semibold py-2 rounded-lg transition"
+                className="flex-1 bg-black/5 hover:bg-black/10 text-[#15141A] text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 {t.no}
               </button>
@@ -179,20 +179,20 @@ export default function FeedbackPrompt() {
 
         {step === "rate" && (
           <>
-            <p className="text-sm text-[#15141A] mb-4">
+            <p className="text-xs sm:text-sm text-[#15141A] mb-2 sm:mb-3 md:mb-4">
               {PLAY_STORE_URL ? t.ratePrompt : t.thanksNoStore}
             </p>
             {PLAY_STORE_URL ? (
               <button
                 onClick={finishPositive}
-                className="w-full bg-[#C81E3A] hover:bg-[#A11530] text-white text-sm font-semibold py-2 rounded-lg transition"
+                className="w-full bg-[#C81E3A] hover:bg-[#A11530] text-white text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 {t.rateButton}
               </button>
             ) : (
               <button
                 onClick={finishPositive}
-                className="w-full bg-black/5 hover:bg-black/10 text-[#15141A] text-sm font-semibold py-2 rounded-lg transition"
+                className="w-full bg-black/5 hover:bg-black/10 text-[#15141A] text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 OK
               </button>
@@ -202,25 +202,25 @@ export default function FeedbackPrompt() {
 
         {step === "feedback" && (
           <>
-            <p className="text-sm text-[#15141A] mb-3">{t.feedbackPrompt}</p>
+            <p className="text-xs sm:text-sm text-[#15141A] mb-2 sm:mb-3 md:mb-4">{t.feedbackPrompt}</p>
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder={t.feedbackPlaceholder}
-              rows={3}
-              className="w-full border border-black/10 rounded-lg p-2 text-sm mb-3 resize-none focus:outline-none focus:ring-2 focus:ring-[#C81E3A]/30"
+              rows={2}
+              className="w-full border border-black/10 rounded-lg p-2 text-xs sm:text-sm mb-2 sm:mb-3 md:mb-3 resize-none focus:outline-none focus:ring-2 focus:ring-[#C81E3A]/30"
             />
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <button
                 onClick={submitFeedback}
                 disabled={submitting}
-                className="flex-1 bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white text-sm font-semibold py-2 rounded-lg transition"
+                className="flex-1 bg-[#C81E3A] hover:bg-[#A11530] disabled:opacity-60 text-white text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 {submitting ? "..." : t.submit}
               </button>
               <button
                 onClick={dismiss}
-                className="flex-1 bg-black/5 hover:bg-black/10 text-[#15141A] text-sm font-semibold py-2 rounded-lg transition"
+                className="flex-1 bg-black/5 hover:bg-black/10 text-[#15141A] text-xs sm:text-sm font-semibold py-1.5 sm:py-2 rounded-lg transition"
               >
                 {t.later}
               </button>
@@ -229,7 +229,7 @@ export default function FeedbackPrompt() {
         )}
 
         {step === "done" && (
-          <p className="text-sm text-[#15141A] text-center py-2">{t.thankYou}</p>
+          <p className="text-xs sm:text-sm text-[#15141A] text-center py-1.5 sm:py-2">{t.thankYou}</p>
         )}
       </div>
     </div>

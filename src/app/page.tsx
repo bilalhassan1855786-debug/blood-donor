@@ -98,19 +98,19 @@ export default function Home() {
       <Hero />
 
       {/* WHY DONATE */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-14">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-12 md:py-24">
+        <div className="text-center mb-6 sm:mb-10 md:mb-14">
           <h2
-            className={`${display.className} text-4xl md:text-5xl font-bold text-[#15141A]`}
+            className={`${display.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#15141A]`}
           >
             {t(lang, "why_donate_title")}
           </h2>
-          <p className="text-[#5B5964] mt-4 max-w-2xl mx-auto leading-7">
+          <p className="text-xs sm:text-sm md:text-base text-[#5B5964] mt-2 sm:mt-4 max-w-2xl mx-auto leading-6 sm:leading-7">
             {t(lang, "why_donate_desc")}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           <Card
             icon="❤️"
             title={t(lang, "save_lives")}
@@ -132,7 +132,7 @@ export default function Home() {
       <PulseDivider />
 
       {/* OUR IMPACT */}
-      <section className="relative bg-[#15141A] text-white py-24 overflow-hidden">
+      <section className="relative bg-[#15141A] text-white py-8 sm:py-12 md:py-24 overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{
@@ -141,14 +141,14 @@ export default function Home() {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className={`${display.className} text-4xl md:text-5xl font-bold`}>
+        <div className="relative max-w-7xl mx-auto px-3 sm:px-6">
+          <div className="text-center mb-6 sm:mb-10 md:mb-14">
+            <h2 className={`${display.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold`}>
               {t(lang, "our_impact")}
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
             <StatCard value="1000+" title={t(lang, "registered_donors")} />
             <StatCard value="50+" title={t(lang, "cities_covered")} />
             <StatCard value="5000+" title={t(lang, "lives_saved")} />
@@ -158,16 +158,16 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-12 md:py-24">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2
-            className={`${display.className} text-4xl md:text-5xl font-bold text-[#15141A]`}
+            className={`${display.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#15141A]`}
           >
             {t(lang, "how_it_works")}
           </h2>
         </div>
 
-        <div className="relative grid md:grid-cols-4 gap-6">
+        <div className="relative grid md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {/* connecting line behind the steps on desktop */}
           <div className="hidden md:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C81E3A]/30 to-transparent" />
 
@@ -179,18 +179,18 @@ export default function Home() {
       </section>
 
       {/* DONOR PRIVACY */}
-      <section className="py-10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-white border border-[#0F6E66]/15 rounded-[2rem] p-10 md:p-12 text-center shadow-sm">
-            <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#0F6E66]/10 flex items-center justify-center text-3xl">
+      <section className="py-4 sm:py-6 md:py-10">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6">
+          <div className="bg-white border border-[#0F6E66]/15 rounded-lg sm:rounded-2xl md:rounded-[2rem] p-4 sm:p-8 md:p-12 text-center shadow-sm">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-[#0F6E66]/10 flex items-center justify-center text-2xl sm:text-3xl">
               🔒
             </div>
             <h2
-              className={`${display.className} text-2xl md:text-3xl font-bold text-[#0F6E66] mb-4`}
+              className={`${display.className} text-lg sm:text-2xl md:text-3xl font-bold text-[#0F6E66] mb-2 sm:mb-3 md:mb-4`}
             >
               {t(lang, "privacy_title")}
             </h2>
-            <p className="text-[#5B5964] leading-8 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-[#5B5964] leading-6 sm:leading-7 md:leading-8 max-w-2xl mx-auto">
               {t(lang, "privacy_desc")}
             </p>
           </div>
@@ -200,9 +200,9 @@ export default function Home() {
       <PulseDivider />
 
       {/* EMERGENCY */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="relative bg-[#C81E3A] rounded-[2rem] p-10 md:p-14 shadow-xl overflow-hidden">
+      <section className="py-8 sm:py-12 md:py-20">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6 text-center">
+          <div className="relative bg-[#C81E3A] rounded-lg sm:rounded-2xl md:rounded-[2rem] p-4 sm:p-8 md:p-14 shadow-lg md:shadow-xl overflow-hidden">
             <div
               className="pointer-events-none absolute inset-0 opacity-30"
               style={{
@@ -211,18 +211,18 @@ export default function Home() {
               }}
             />
             <h2
-              className={`${display.className} relative text-3xl md:text-4xl font-bold text-white mb-4`}
+              className={`${display.className} relative text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-4 md:mb-4`}
             >
               🚨 {t(lang, "emergency_title")}
             </h2>
-            <p className="relative text-white/85 mb-9 leading-8 max-w-2xl mx-auto">
+            <p className="relative text-xs sm:text-sm md:text-base text-white/85 mb-4 sm:mb-6 md:mb-9 leading-6 sm:leading-7 md:leading-8 max-w-2xl mx-auto">
               {t(lang, "emergency_desc")}
             </p>
 
-           <div className="relative flex justify-center gap-4 flex-wrap">
+           <div className="relative flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
   <a
     href="tel:+923456665997"
-    className="motion-safe:animate-pulse bg-white text-[#C81E3A] px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
+    className="motion-safe:animate-pulse bg-white text-[#C81E3A] px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm md:text-base shadow-md md:shadow-lg hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
   >
     📞 {t(lang, "call_now")}
   </a>
@@ -231,7 +231,7 @@ export default function Home() {
     href="https://wa.me/923456665997"
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-[#15141A] text-white px-8 py-4 rounded-xl font-bold hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
+    className="bg-[#15141A] text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm md:text-base hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
   >
     💬 {t(lang, "whatsapp")}
   </a>
@@ -241,17 +241,17 @@ export default function Home() {
       </section>
 
       {/* OUR TEAM */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-14">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-12 md:py-24">
+        <div className="text-center mb-6 sm:mb-10 md:mb-14">
           <h2
-            className={`${display.className} text-4xl md:text-5xl font-bold text-[#15141A]`}
+            className={`${display.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#15141A]`}
           >
             {t(lang, "our_team")}
           </h2>
-          <p className="text-[#5B5964] mt-4">{t(lang, "team_desc")}</p>
+          <p className="text-xs sm:text-sm md:text-base text-[#5B5964] mt-2 sm:mt-4">{t(lang, "team_desc")}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           <TeamCard name="Muhammad Irfan" role={t(lang, "super_admin")} />
           <TeamCard name="Muhammad Amjad" role={t(lang, "admin")} />
           <TeamCard name="Ghulam Shabir" role={t(lang, "admin")} />
@@ -259,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative bg-[#15141A] text-white py-24 overflow-hidden">
+      <section className="relative bg-[#15141A] text-white py-8 sm:py-12 md:py-24 overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 opacity-50"
           style={{
@@ -267,16 +267,16 @@ export default function Home() {
               "radial-gradient(700px circle at 50% 0%, rgba(200,30,58,0.35), transparent 65%)",
           }}
         />
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className={`${display.className} text-4xl md:text-6xl font-bold mb-6`}>
+        <div className="relative max-w-4xl mx-auto px-3 sm:px-6 text-center">
+          <h2 className={`${display.className} text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6`}>
             {t(lang, "cta_title")}
           </h2>
-          <p className="text-lg md:text-xl mb-9 leading-8 text-white/80">
+          <p className="text-xs sm:text-sm md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-9 leading-6 sm:leading-7 md:leading-8 text-white/80">
             {t(lang, "cta_desc")}
           </p>
           <Link
             href="/become-donor"
-            className="inline-block bg-[#C81E3A] text-white px-10 py-4 rounded-xl font-bold hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
+            className="inline-block bg-[#C81E3A] text-white px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-4 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm md:text-base hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white transition"
           >
             🩸 {t(lang, "become_donor")}
           </Link>
@@ -313,14 +313,14 @@ function PulseDivider() {
 // ===============================
 function Card({ icon, title, text }: { icon: string; title: string; text: string }) {
   return (
-    <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#FBE7E8] text-3xl mb-6">
+    <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-6 md:p-8 border border-black/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-lg sm:rounded-xl md:rounded-2xl bg-[#FBE7E8] text-2xl sm:text-3xl mb-3 sm:mb-6">
         {icon}
       </div>
-      <h3 className={`${display.className} text-xl font-bold text-[#15141A] mb-3`}>
+      <h3 className={`${display.className} text-sm sm:text-base md:text-lg font-bold text-[#15141A] mb-2 sm:mb-3`}>
         {title}
       </h3>
-      <p className="text-[#5B5964] leading-7">{text}</p>
+      <p className="text-xs sm:text-sm text-[#5B5964] leading-6 sm:leading-7">{text}</p>
     </div>
   );
 }
@@ -330,11 +330,11 @@ function Card({ icon, title, text }: { icon: string; title: string; text: string
 // ===============================
 function StatCard({ value, title }: { value: string; title: string }) {
   return (
-    <div className="bg-white/5 backdrop-blur rounded-3xl p-6 md:p-8 text-center border border-white/10 hover:border-[#C81E3A]/40 transition">
-      <h3 className={`${mono.className} text-3xl md:text-5xl font-semibold mb-3 text-white`}>
+    <div className="bg-white/5 backdrop-blur rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-5 md:p-8 text-center border border-white/10 hover:border-[#C81E3A]/40 transition">
+      <h3 className={`${mono.className} text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 text-white`}>
         {value}
       </h3>
-      <p className="text-sm md:text-base font-medium text-white/70 tracking-wide">
+      <p className="text-xs sm:text-sm md:text-base font-medium text-white/70 tracking-wide">
         {title}
       </p>
     </div>
@@ -346,16 +346,16 @@ function StatCard({ value, title }: { value: string; title: string }) {
 // ===============================
 function Step({ number, title, text }: { number: string; title: string; text: string }) {
   return (
-    <div className="relative bg-white rounded-3xl p-8 border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+    <div className="relative bg-white rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-6 md:p-8 border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
       <div
-        className={`${mono.className} w-14 h-14 mx-auto mb-5 rounded-2xl bg-[#C81E3A] text-white flex items-center justify-center text-xl font-semibold`}
+        className={`${mono.className} w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto mb-3 sm:mb-5 rounded-lg sm:rounded-xl md:rounded-2xl bg-[#C81E3A] text-white flex items-center justify-center text-base sm:text-lg md:text-xl font-semibold`}
       >
         {number}
       </div>
-      <h3 className={`${display.className} text-lg font-bold text-[#15141A] mb-3`}>
+      <h3 className={`${display.className} text-sm sm:text-base md:text-lg font-bold text-[#15141A] mb-2 sm:mb-3`}>
         {title}
       </h3>
-      <p className="text-[#5B5964] leading-7 text-sm">{text}</p>
+      <p className="text-xs sm:text-sm text-[#5B5964] leading-6 sm:leading-7">{text}</p>
     </div>
   );
 }
@@ -365,12 +365,12 @@ function Step({ number, title, text }: { number: string; title: string; text: st
 // ===============================
 function TeamCard({ name, role }: { name: string; role: string }) {
   return (
-    <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
-      <div className="w-24 h-24 mx-auto mb-5 rounded-full bg-[#FBE7E8] flex items-center justify-center text-4xl">
+    <div className="bg-white rounded-lg sm:rounded-2xl md:rounded-3xl p-3 sm:p-6 md:p-8 border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300 text-center">
+      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-3 sm:mb-5 rounded-full bg-[#FBE7E8] flex items-center justify-center text-3xl sm:text-4xl">
         👤
       </div>
-      <h3 className={`${display.className} text-lg font-bold text-[#15141A]`}>{name}</h3>
-      <p className="text-[#C81E3A] font-semibold mt-2 text-sm">{role}</p>
+      <h3 className={`${display.className} text-sm sm:text-base md:text-lg font-bold text-[#15141A]`}>{name}</h3>
+      <p className="text-[#C81E3A] font-semibold mt-1 sm:mt-2 text-xs sm:text-sm">{role}</p>
     </div>
   );
 }
